@@ -1,0 +1,198 @@
+﻿@{
+    ViewData["Title"] = "Add New Client";
+}
+
+
+@section Styles {
+    <!-- BEGIN Page Level CSS-->
+    <link rel="stylesheet" type="text/css" href="~/app-assets/css/core/menu/menu-types/horizontal-menu.css">
+    <link rel="stylesheet" type="text/css" href="~/app-assets/css/core/colors/palette-gradient.css">
+    <!-- END Page Level CSS-->
+}
+
+
+<div class="content-header-left col-md-6 col-12 mb-2">
+    <h3 class="content-header-title">Add Client</h3>
+    <div class="row breadcrumbs-top">
+        <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a asp-controller="Client" asp-action="Index">Clients</a>
+                </li>
+                <li class="breadcrumb-item active">
+                    <a asp-controller="Client" asp-action="AddClient">Add New Client</a>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
+<div class="content-body">
+    <!-- Basic form layout section start -->
+    <section id="basic-form-layouts">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title" id="basic-layout-form">Add New Client</h4>
+                <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                        <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                        <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
+                        <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                        <li><a data-action="close"><i class="ft-x"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-content collapse show">
+                <div class="card-body">
+                    <form class="form">
+                        <div class="form-body">
+                            <h4 class="form-section"><i class="ft-user"></i> Personal Info</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput1">Surname</label>
+                                        <input type="text" id="projectinput1" class="form-control" placeholder="Surname"
+                                               name="fname">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput2">Othername(s)</label>
+                                        <input type="text" id="projectinput2" class="form-control" placeholder="Othername(s)"
+                                               name="lname">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput3">E-mail</label>
+                                        <input type="text" id="projectinput3" class="form-control" placeholder="E-mail" name="email">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput4">Contact Number</label>
+                                        <input type="text" id="projectinput4" class="form-control" placeholder="+233247678543" name="phone">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput3">Postal Address</label>
+                                        <input type="text" id="projectinput3" class="form-control" placeholder="P.O.Box KS123, Kumasi" name="email">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput4">Residential Address</label>
+                                        <input type="text" id="projectinput4" class="form-control" placeholder="45 Kofi Annan St, Accra, Ghana" name="phone">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput3">Birth Date</label>
+                                        <input type="date" id="projectinput3" class="form-control" placeholder="22/10/1990" name="email">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput5">Zone</label>
+                                        <select id="projectinput5" name="interested" class="form-control">
+                                            <option value="none" selected="" disabled="">Select Zone</option>
+                                            <option value="design">design</option>
+                                            <option value="development">development</option>
+                                            <option value="illustration">illustration</option>
+                                            <option value="branding">branding</option>
+                                            <option value="video">video</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput3">Name of Employer</label>
+                                        <input type="text" id="projectinput3" class="form-control" placeholder="Eg. Tullow Oil" name="email">
+                                    </div>
+                                </div>
+                            </div>
+                            <h4 class="form-section"><i class="la la-car"></i> Vehicle Details </h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput5">Make</label>
+                                        <select id="projectinput5" name="interested" class="form-control">
+                                            <option value="none" selected="" disabled="">Select Make</option>
+                                            <option value="design">design</option>
+                                            <option value="development">development</option>
+                                            <option value="illustration">illustration</option>
+                                            <option value="branding">branding</option>
+                                            <option value="video">video</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput5">Model</label>
+                                        <select id="projectinput5" name="interested" class="form-control">
+                                            <option value="none" selected="" disabled="">Select Model</option>
+                                            <option value="design">design</option>
+                                            <option value="development">development</option>
+                                            <option value="illustration">illustration</option>
+                                            <option value="branding">branding</option>
+                                            <option value="video">video</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput6">Color</label>
+                                        <select id="projectinput6" name="budget" class="form-control">
+                                            <option value="0" selected="" disabled="">Select Color</option>
+                                            <option value="less than 5000$">less than 5000$</option>
+                                            <option value="5000$ - 10000$">5000$ - 10000$</option>
+                                            <option value="10000$ - 20000$">10000$ - 20000$</option>
+                                            <option value="more than 20000$">more than 20000$</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput2">Registration Number</label>
+                                        <input type="text" id="projectinput2" class="form-control" placeholder="Registration Number"
+                                               name="lname">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput3">Insurance Date</label>
+                                        <input type="date" id="projectinput3" class="form-control" placeholder="22/10/1990" name="email">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-actions right">
+                            <button type="button" class="btn btn-warning mr-1">
+                                <i class="ft-x"></i> Cancel
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="la la-check-square-o"></i> Save
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- // Basic form layout section end -->
+</div>
