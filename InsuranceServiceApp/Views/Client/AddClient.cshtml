@@ -1,4 +1,6 @@
-﻿@{
+﻿@model ClientVehicleForAddEditViewModel
+
+@{
     ViewData["Title"] = "Add New Client";
 }
 
@@ -53,15 +55,15 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="projectinput1">Surname</label>
-                                        <input type="text" id="projectinput1" class="form-control" placeholder="Surname"
-                                               name="fname">
+                                        <input type="text" id="projectinput1" class="form-control" asp-for="ClientForAddVm.Surname" placeholder="Surname" />
+                                        <span asp-validation-for="ClientForAddVm.Surname"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="projectinput2">Othername(s)</label>
-                                        <input type="text" id="projectinput2" class="form-control" placeholder="Othername(s)"
-                                               name="lname">
+                                        <input type="text" id="projectinput2" class="form-control" asp-for="ClientForAddVm.Othername" placeholder="Othername(s)" />
+                                        <span asp-validation-for="ClientForAddVm.Othername"></span>
                                     </div>
                                 </div>
                             </div>
@@ -69,13 +71,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="projectinput3">E-mail</label>
-                                        <input type="text" id="projectinput3" class="form-control" placeholder="E-mail" name="email">
+                                        <input type="text" id="projectinput3" class="form-control" placeholder="E-mail" asp-for="ClientForAddVm.Email" />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="projectinput4">Contact Number</label>
-                                        <input type="text" id="projectinput4" class="form-control" placeholder="+233247678543" name="phone">
+                                        <input type="text" id="projectinput4" class="form-control" placeholder="+233247678543" asp-for="ClientForAddVm.Cellphone" />
+                                        <span asp-validation-for="ClientForAddVm.Cellphone"></span>
                                     </div>
                                 </div>
                             </div>
@@ -83,13 +86,13 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="projectinput3">Postal Address</label>
-                                        <input type="text" id="projectinput3" class="form-control" placeholder="P.O.Box KS123, Kumasi" name="email">
+                                        <input type="text" id="projectinput3" class="form-control" placeholder="P.O.Box KS123, Kumasi" asp-for="ClientForAddVm.PostalAddress" />
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="projectinput4">Residential Address</label>
-                                        <input type="text" id="projectinput4" class="form-control" placeholder="45 Kofi Annan St, Accra, Ghana" name="phone">
+                                        <input type="text" id="projectinput4" class="form-control" placeholder="45 Kofi Annan St, Accra, Ghana" asp-for="ClientForAddVm.ResidentialAddress" />
                                     </div>
                                 </div>
                             </div>
@@ -97,13 +100,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="projectinput3">Birth Date</label>
-                                        <input type="date" id="projectinput3" class="form-control" placeholder="22/10/1990" name="email">
+                                        <input type="date" id="projectinput3" class="form-control" placeholder="22/10/1990" asp-for="ClientForAddVm.BirthDate" />
+                                        <span asp-validation-for="ClientForAddVm.BirthDate"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="projectinput5">Zone</label>
-                                        <select id="projectinput5" name="interested" class="form-control">
+                                        <select id="projectinput5" name="interested" class="form-control" asp-for="ClientForAddVm.ZoneId" >
                                             <option value="none" selected="" disabled="">Select Zone</option>
                                             <option value="design">design</option>
                                             <option value="development">development</option>
@@ -118,7 +122,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="projectinput3">Name of Employer</label>
-                                        <input type="text" id="projectinput3" class="form-control" placeholder="Eg. Tullow Oil" name="email">
+                                        <input type="text" id="projectinput3" class="form-control" placeholder="Eg. Tullow Oil" asp-for="ClientForAddVm.Employer" />
                                     </div>
                                 </div>
                             </div>
@@ -127,7 +131,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="projectinput5">Make</label>
-                                        <select id="projectinput5" name="interested" class="form-control">
+                                        <select id="projectinput5" name="interested" class="form-control" >
                                             <option value="none" selected="" disabled="">Select Make</option>
                                             <option value="design">design</option>
                                             <option value="development">development</option>
@@ -140,7 +144,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="projectinput5">Model</label>
-                                        <select id="projectinput5" name="interested" class="form-control">
+                                        <select id="projectinput5" name="interested" class="form-control" asp-for="VehicleForAddVm.ModelId" >
                                             <option value="none" selected="" disabled="">Select Model</option>
                                             <option value="design">design</option>
                                             <option value="development">development</option>
@@ -148,6 +152,8 @@
                                             <option value="branding">branding</option>
                                             <option value="video">video</option>
                                         </select>
+
+                                        <span asp-validation-for="VehicleForAddVm.ModelId"></span>
                                     </div>
                                 </div>
                             </div>
@@ -155,7 +161,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="projectinput6">Color</label>
-                                        <select id="projectinput6" name="budget" class="form-control">
+                                        <select id="projectinput6" name="budget" class="form-control" asp-for="VehicleForAddVm.ColourCode" >
                                             <option value="0" selected="" disabled="">Select Color</option>
                                             <option value="less than 5000$">less than 5000$</option>
                                             <option value="5000$ - 10000$">5000$ - 10000$</option>
@@ -167,8 +173,9 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="projectinput2">Registration Number</label>
-                                        <input type="text" id="projectinput2" class="form-control" placeholder="Registration Number"
-                                               name="lname">
+                                        <input type="text" id="projectinput2" class="form-control" placeholder="Registration Number" asp-for="VehicleForAddVm.RegistrationNo" />
+
+                                        <span asp-validation-for="VehicleForAddVm.RegistrationNo"></span>
                                     </div>
                                 </div>
                             </div>
@@ -176,7 +183,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="projectinput3">Insurance Date</label>
-                                        <input type="date" id="projectinput3" class="form-control" placeholder="22/10/1990" name="email">
+                                        <input type="date" id="projectinput3" class="form-control" placeholder="22/10/1990" />
                                     </div>
                                 </div>
                             </div>

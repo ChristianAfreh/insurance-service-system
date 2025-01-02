@@ -21,6 +21,8 @@ namespace InsuranceServiceApp.Models.Data
         public virtual DbSet<Insurer> Insurers { get; set; } = null!;
         public virtual DbSet<InsurerType> InsurerTypes { get; set; } = null!;
         public virtual DbSet<Invoice> Invoices { get; set; } = null!;
+        public virtual DbSet<LookUp> LookUps { get; set; } = null!;
+        public virtual DbSet<LookUpCode> LookUpCodes { get; set; } = null!;
         public virtual DbSet<Make> Makes { get; set; } = null!;
         public virtual DbSet<Model> Models { get; set; } = null!;
         public virtual DbSet<Region> Regions { get; set; } = null!;
@@ -93,6 +95,8 @@ namespace InsuranceServiceApp.Models.Data
                 entity.ToTable("Country");
 
                 entity.Property(e => e.CountryId).HasColumnName("CountryID");
+
+                entity.Property(e => e.CountryCode).HasMaxLength(50);
 
                 entity.Property(e => e.CreatedAppUserId).HasColumnName("CreatedAppUserID");
 
@@ -202,6 +206,52 @@ namespace InsuranceServiceApp.Models.Data
                     .HasForeignKey(d => d.RequestId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("RefServiceRequest8");
+            });
+
+            modelBuilder.Entity<LookUp>(entity =>
+            {
+                entity.ToTable("LookUp");
+
+                entity.Property(e => e.LookUpId).HasColumnName("LookUpID");
+
+                entity.Property(e => e.CreateAppUserId).HasColumnName("CreateAppUserID");
+
+                entity.Property(e => e.DateCreated).HasColumnType("datetime");
+
+                entity.Property(e => e.FullName).HasMaxLength(250);
+
+                entity.Property(e => e.LastDateUpdated).HasColumnType("datetime");
+
+                entity.Property(e => e.LastUpdateAppUserId).HasColumnName("LastUpdateAppUserID");
+
+                entity.Property(e => e.LookUpCodeId).HasColumnName("LookUpCodeID");
+
+                entity.Property(e => e.ShortName).HasMaxLength(10);
+
+                entity.HasOne(d => d.LookUpCode)
+                    .WithMany(p => p.LookUps)
+                    .HasForeignKey(d => d.LookUpCodeId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_LookUp_LookUpCode");
+            });
+
+            modelBuilder.Entity<LookUpCode>(entity =>
+            {
+                entity.ToTable("LookUpCode");
+
+                entity.Property(e => e.LookUpCodeId).HasColumnName("LookUpCodeID");
+
+                entity.Property(e => e.CreateAppUserId).HasColumnName("CreateAppUserID");
+
+                entity.Property(e => e.DateCreated).HasColumnType("datetime");
+
+                entity.Property(e => e.LastDateUpdated).HasColumnType("datetime");
+
+                entity.Property(e => e.LastUpdateAppUserId).HasColumnName("LastUpdateAppUserID");
+
+                entity.Property(e => e.LookUpName).HasMaxLength(250);
+
+                entity.Property(e => e.LookUpShortCode).HasMaxLength(10);
             });
 
             modelBuilder.Entity<Make>(entity =>
@@ -420,7 +470,7 @@ namespace InsuranceServiceApp.Models.Data
 
                 entity.Property(e => e.ClientId).HasColumnName("ClientID");
 
-                entity.Property(e => e.Colour).HasMaxLength(250);
+                entity.Property(e => e.ColourCode).HasMaxLength(10);
 
                 entity.Property(e => e.CreateAppUserId).HasColumnName("CreateAppUserID");
 
