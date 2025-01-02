@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using InsuranceServiceApp.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace InsuranceServiceApp.Controllers
 {
@@ -16,7 +17,12 @@ namespace InsuranceServiceApp.Controllers
 
         public IActionResult AddClient()
         {
-            return View();
+            var model = new ClientVehicleForAddEditViewModel
+            {
+                ClientForAddVm = new ClientForAddViewModel(),
+                VehicleForAddVm = new VehicleForAddViewModel()
+            };
+            return View(model);
         }
     }
 }

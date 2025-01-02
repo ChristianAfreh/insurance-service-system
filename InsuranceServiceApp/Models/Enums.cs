@@ -10,4 +10,9 @@
         Active = 1,
         Deleted = 10
     }
+
+    public enum LookUpCodeIdEnum
+    {
+        Color = 5,
+    }
 }

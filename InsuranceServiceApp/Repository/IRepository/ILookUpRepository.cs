@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace InsuranceServiceApp.Repository.IRepository
 {
-    public interface IModelRepository : IBaseRepository<Model>
+    public interface ILookUpRepository : IBaseRepository<LookUp>
     {
-        SelectList GetModelSelectList();
+        SelectList GetLookupSelectList(int lookupCodeId, object? selectedValue = null);
     }
 }

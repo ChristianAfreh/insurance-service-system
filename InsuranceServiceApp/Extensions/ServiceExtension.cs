@@ -1,4 +1,5 @@
-﻿using InsuranceServiceApp.Models.Data;
+﻿using InsuranceServiceApp.MapperProfiles;
+using InsuranceServiceApp.Models.Data;
 using InsuranceServiceApp.Repository;
 using InsuranceServiceApp.Repository.IRepository;
 using InsuranceServiceApp.Services;
@@ -35,6 +36,11 @@ namespace InsuranceServiceApp.Extensions
             services.AddScoped<IClientService, ClientService>();
         }
 
+        public static void RegisterMapperProfiles(this IServiceCollection services)
+        {
+            services.AddAutoMapper(typeof(ApplicationProfile));
+            
+        }
 
     }
 }
