@@ -1,4 +1,13 @@
-﻿<!DOCTYPE html>
+﻿
+@using Microsoft.AspNetCore.Http.Extensions;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor;
+
+@{
+    string baseUrl;
+    var request = HttpContextAccessor.HttpContext?.Request;
+    baseUrl = $"{request?.Scheme}://{request?.Host}{request?.PathBase}/";
+}
+<!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="ltr">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -20,6 +29,7 @@
     <link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/charts/morris.css">
     <link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/charts/chartist.css">
     <link rel="stylesheet" type="text/css" href="~/app-assets/vendors/css/charts/chartist-plugin-tooltip.css">
+    <link href="~/app-assets/vendors/css/extensions/toastr.css" rel="stylesheet" />
     <!-- END VENDOR CSS-->
 
     <!-- BEGIN MODERN CSS-->
@@ -240,6 +250,7 @@
     <script src="~/app-assets/vendors/js/charts/raphael-min.js" type="text/javascript"></script>
     <script src="~/app-assets/vendors/js/charts/morris.min.js" type="text/javascript"></script>
     <script src="~/app-assets/vendors/js/timeline/horizontal-timeline.js" type="text/javascript"></script>
+    <script src="~/app-assets/vendors/js/extensions/toastr.min.js"></script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
@@ -253,7 +264,9 @@
     <script src="~/app-assets/js/scripts/customizer.js" type="text/javascript"></script>
     <script type="text/javascript" src="~/app-assets/vendors/js/ui/jquery.sticky.js"></script>
     <!-- END MODERN JS-->
-
+    <script type="text/javascript">
+        var baseUrl = "@baseUrl";
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

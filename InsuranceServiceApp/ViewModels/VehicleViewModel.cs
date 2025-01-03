@@ -1,4 +1,6 @@
-﻿namespace InsuranceServiceApp.ViewModels
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace InsuranceServiceApp.ViewModels
 {
     public class VehicleViewModel
     {
@@ -7,6 +9,7 @@
         public long ModelId { get; set; }
         public long? TypeId { get; set; }
         public string? RegistrationNo { get; set; }
+        public DateTime? InsuranceDate { get; set; }
         public string? ColourCode { get; set; }
         public int? ActiveFlag { get; set; }
     }
@@ -17,7 +20,13 @@
         public long? ClientId { get; set; }
         public long ModelId { get; set; }
         public long? TypeId { get; set; }
+
+        [Required(ErrorMessage = "Registration Number is a required field")]
         public string? RegistrationNo { get; set; }
+
+        [Required(ErrorMessage = "Insurance Date is a required field")]
+        public DateTime? InsuranceDate { get; set; }
+
         public string? ColourCode { get; set; }
         public int? ActiveFlag { get; set; }
     }

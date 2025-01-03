@@ -13,6 +13,6 @@
 
     public enum LookUpCodeIdEnum
     {
-        Color = 5,
+        Colour = 1,
     }
 }

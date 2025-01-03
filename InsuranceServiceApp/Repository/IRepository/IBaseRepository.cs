@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.EntityFrameworkCore.Storage;
 using System.Linq.Expressions;
 using System.Security.Cryptography;
 
@@ -22,6 +23,7 @@ namespace InsuranceServiceApp.Repository.IRepository
         int SaveChanges();
         Task<int> SaveChangesAsync();
         void SaveChanges(int expectedResult, string errorMessage);
+        IDbContextTransaction GetTransaction();
 
     }
 }

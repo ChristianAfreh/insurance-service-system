@@ -10,6 +10,7 @@ namespace InsuranceServiceApp.Models.Data
         public long ModelId { get; set; }
         public long? TypeId { get; set; }
         public string? RegistrationNo { get; set; }
+        public DateTime? InsuranceDate { get; set; }
         public string? ColourCode { get; set; }
         public int? ActiveFlag { get; set; }
         public DateTime DateCreated { get; set; }

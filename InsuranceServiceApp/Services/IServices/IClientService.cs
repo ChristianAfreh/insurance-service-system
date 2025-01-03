@@ -6,6 +6,7 @@ namespace InsuranceServiceApp.Services.IServices
     {
         IEnumerable<ClientViewModel> GetAllClients();
         ClientViewModel GetClientByClientId(long clientId);
-        long AddClient(ClientForAddViewModel clientAddModel);
+        void AddClientVehicleData(ClientVehicleForAddEditViewModel clientVehicleAddModel);
+        ClientVehicleForAddSelectListViewModel GetSelectListsForClientVehicleAdd();
     }
 }

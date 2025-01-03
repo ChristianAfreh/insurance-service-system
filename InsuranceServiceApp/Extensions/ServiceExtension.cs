@@ -21,6 +21,12 @@ namespace InsuranceServiceApp.Extensions
         public static void RegisterRepositories(this IServiceCollection services)
         {
             services.AddScoped<IClientRepository, ClientRepository>();
+            services.AddScoped<IVehicleRepository, VehicleRepository>();
+            services.AddScoped<IZoneRepository, ZoneRepository>();
+            services.AddScoped<IMakeRepository, MakeRepository>();
+            services.AddScoped<IModelRepository, ModelRepository>();
+            services.AddScoped<ILookUpRepository, LookUpRepository>();
+            services.AddScoped<IVehicleTypeRepository, VehicleTypeRepository>();
         }
 
         //Add UnitsOfWork

@@ -105,5 +105,10 @@ namespace InsuranceServiceApp.Repository
                 throw new CustomException(errorMessage);
         }
 
+        public IDbContextTransaction GetTransaction()
+        {
+            return _context.Database.BeginTransaction();
+        }
+
     }
 }

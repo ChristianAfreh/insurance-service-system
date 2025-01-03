@@ -476,6 +476,8 @@ namespace InsuranceServiceApp.Models.Data
 
                 entity.Property(e => e.DateCreated).HasColumnType("datetime");
 
+                entity.Property(e => e.InsuranceDate).HasColumnType("datetime");
+
                 entity.Property(e => e.LastDateUpdated).HasColumnType("datetime");
 
                 entity.Property(e => e.LastUpdateAppUserId).HasColumnName("LastUpdateAppUserID");

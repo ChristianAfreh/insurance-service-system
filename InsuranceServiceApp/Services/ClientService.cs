@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using InsuranceServiceApp.Extensions;
 using InsuranceServiceApp.Models;
 using InsuranceServiceApp.Models.Data;
 using InsuranceServiceApp.Services.IServices;
@@ -36,14 +37,95 @@ namespace InsuranceServiceApp.Services
             return clientVM;
         }
 
-        public long AddClient(ClientForAddViewModel clientAddModel)
-        { 
-            var clientToAdd = _mapper.Map<Client>(clientAddModel);
-            clientToAdd.ActiveFlag = (int)ActiveFlagEnum.Active;
-            clientToAdd.DateCreated = DateTime.UtcNow;
-            clientToAdd.CreateAppUserId = 1;
-            clientToAdd.LastDateUpdated = DateTime.UtcNow;
-            clientToAdd.LastUpdateAppUserId = 1;
+        public void AddClientVehicleData(ClientVehicleForAddEditViewModel clientVehicleAddModel)
+        {
+
+            if (clientVehicleAddModel is null)
+                throw new CustomException("ClientVehicle data is null.");
+
+            using (var transaction = _clientManagementUoW.ClientRepository.GetTransaction()) 
+            {
+                try
+                {
+                    var clientDataForAdd = new ClientForAddViewModel
+                    {
+                        ZoneId = clientVehicleAddModel.ClientForAddVm.ZoneId,
+                        Surname = clientVehicleAddModel.ClientForAddVm.Surname,
+                        Othername = clientVehicleAddModel.ClientForAddVm.Othername,
+                        Cellphone = clientVehicleAddModel.ClientForAddVm.Cellphone,
+                        Email = clientVehicleAddModel.ClientForAddVm.Email,
+                        BirthDate = clientVehicleAddModel.ClientForAddVm.BirthDate,
+                        ResidentialAddress = clientVehicleAddModel.ClientForAddVm.ResidentialAddress,
+                        PostalAddress = clientVehicleAddModel.ClientForAddVm.PostalAddress,
+                        Employer = clientVehicleAddModel.ClientForAddVm.Employer,
+                        ActiveFlag = (int)ActiveFlagEnum.Active,
+                        DateCreated = DateTime.UtcNow,
+                        CreateAppUserId = 1,  // replace with logged in user id
+                        LastDateUpdated = DateTime.UtcNow,
+                        LastUpdateAppUserId = 1, // replace with logged in user id
+                    };
+
+                    // Call private method to save Client data
+                    var clientId = SaveClientData(clientDataForAdd);
+
+                    var vehicleDataForAdd = new VehicleForAddViewModel
+                    {
+                        ClientId = clientId,
+                        ModelId = clientVehicleAddModel.VehicleForAddVm.ModelId,
+                        TypeId = clientVehicleAddModel.VehicleForAddVm.TypeId,
+                        RegistrationNo = clientVehicleAddModel.VehicleForAddVm.RegistrationNo,
+                        InsuranceDate = clientVehicleAddModel.VehicleForAddVm.InsuranceDate,
+                        ColourCode = clientVehicleAddModel.VehicleForAddVm.ColourCode,
+                        ActiveFlag = (int)ActiveFlagEnum.Active,
+                        DateCreated = DateTime.UtcNow,
+                        CreateAppUserId = 1, // replace with logged in user id
+                        LastDateUpdated = DateTime.UtcNow,
+                        LastUpdateAppUserId = 1, // replace with logged in user id
+                    };
+
+                    // Call private method to save Vehicle data
+                    SaveVehicleData(vehicleDataForAdd);
+                    transaction.Commit();
+
+
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw new CustomException($"Attempt to save client vehicle data failed with error: {ex.Message}");
+                }
+            }
+        }
+
+
+        //Get SelectLists
+        public ClientVehicleForAddSelectListViewModel GetSelectListsForClientVehicleAdd()
+        {
+            var zoneList = _clientManagementUoW.ZoneRepository.GetLocationSelectList();
+
+            var makeList = _clientManagementUoW.MakeRepository.GetMakeSelectList();
+
+            var modelList = _clientManagementUoW.ModelRepository.GetModelSelectList();
+
+            var colourList = _clientManagementUoW.LookUpRepository.GetLookupSelectList((int)LookUpCodeIdEnum.Colour);
+            
+            var vehicleTypeList = _clientManagementUoW.VehicleTypeRepository.GetVehicleTypeSelectList();
+
+            var selectListsVm = new ClientVehicleForAddSelectListViewModel
+            {
+                ZoneSelectList = zoneList,
+                MakeSelectList = makeList,
+                ModeSelectList = modelList,
+                ColourSelectList = colourList,
+                VehicleTypeSelectList = vehicleTypeList,
+            };
+
+            return selectListsVm;
+        }
+
+       private long SaveClientData(ClientForAddViewModel clientModelForAdd)
+        {
+            var clientToAdd = _mapper.Map<Client>(clientModelForAdd);
 
             _clientManagementUoW.ClientRepository.Create(clientToAdd);
             _clientManagementUoW.ClientRepository.SaveChanges();
@@ -52,7 +134,16 @@ namespace InsuranceServiceApp.Services
         }
 
 
-       // private int SaveClientVehicle(long clientId,)
+        private void SaveVehicleData(VehicleForAddViewModel vehicleModelForAdd)
+        {
+            var vehicleToAdd = _mapper.Map<Vehicle>(vehicleModelForAdd);
+
+            _clientManagementUoW.VehicleRepository.Create(vehicleToAdd);
+            _clientManagementUoW.VehicleRepository.SaveChanges();
+
+        }
+
+
     }
 
 

@@ -1,4 +1,7 @@
-﻿namespace InsuranceServiceApp.ViewModels
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations;
+
+namespace InsuranceServiceApp.ViewModels
 {
     public class ClientViewModel
     {
@@ -19,9 +22,16 @@
     public class ClientForManipulationViewModel
     {
         public long ZoneId { get; set; }
+
+        [Required(ErrorMessage = "Surname is a required field")]
         public string Surname { get; set; } = null!;
+
+        [Required(ErrorMessage = "Othername(s) is a required field")]
         public string Othername { get; set; } = null!;
+
+        [Required(ErrorMessage = "Phonenumber is a required field")]
         public string Cellphone { get; set; } = null!;
+
         public string? Email { get; set; }
         public DateTime? BirthDate { get; set; }
         public string? ResidentialAddress { get; set; }
@@ -51,4 +61,14 @@
         public ClientForAddViewModel? ClientForAddVm { get; set; }
         public VehicleForAddViewModel? VehicleForAddVm { get; set; }
     }
+
+
+    public class ClientVehicleForAddSelectListViewModel
+    {
+        public SelectList ZoneSelectList { get; set; } 
+        public SelectList MakeSelectList { get; set; }
+        public SelectList ModeSelectList { get; set; }
+        public SelectList ColourSelectList { get; set; }
+        public SelectList VehicleTypeSelectList { get; set; }
+    }   
 }

@@ -11,6 +11,11 @@ namespace InsuranceServiceApp.MapperProfiles
             CreateMap<Client, ClientViewModel>().ReverseMap();
             CreateMap<Client, ClientForAddViewModel>().ReverseMap();
             CreateMap<Client, ClientForEditViewModel>().ReverseMap();
+
+
+
+            CreateMap<Vehicle, VehicleViewModel>().ReverseMap();
+            CreateMap<Vehicle,VehicleForAddViewModel>().ReverseMap();
         }
     }
 }

@@ -1,6 +1,19 @@
+using InsuranceServiceApp.Extensions;
+using InsuranceServiceApp.Utility;
+
 var builder = WebApplication.CreateBuilder(args);
 
+var configuration = builder.Configuration;
+
 // Add services to the container.
+builder.Services.ConfigureSqlContext(configuration);
+builder.Services.RegisterRepositories();
+builder.Services.RegisterUnitsOfWork();
+builder.Services.RegisterServices();
+builder.Services.RegisterMapperProfiles();
+builder.Services.AddHttpContextAccessor();
+
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
@@ -19,6 +32,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+AppHttpContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
+
 
 app.MapControllerRoute(
     name: "default",

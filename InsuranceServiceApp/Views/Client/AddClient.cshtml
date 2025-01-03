@@ -48,22 +48,22 @@
             </div>
             <div class="card-content collapse show">
                 <div class="card-body">
-                    <form class="form">
+                    <form class="form" id="client-vehicle-form" method="post" enctype="multipart/form-data" >
                         <div class="form-body">
                             <h4 class="form-section"><i class="ft-user"></i> Personal Info</h4>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="projectinput1">Surname</label>
+                                        <label for="projectinput1">Surname</label><span class="text-danger">*</span>
                                         <input type="text" id="projectinput1" class="form-control" asp-for="ClientForAddVm.Surname" placeholder="Surname" />
-                                        <span asp-validation-for="ClientForAddVm.Surname"></span>
+                                        <span asp-validation-for="ClientForAddVm.Surname" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="projectinput2">Othername(s)</label>
+                                        <label for="projectinput2">Othername(s)</label><span class="text-danger">*</span>
                                         <input type="text" id="projectinput2" class="form-control" asp-for="ClientForAddVm.Othername" placeholder="Othername(s)" />
-                                        <span asp-validation-for="ClientForAddVm.Othername"></span>
+                                        <span asp-validation-for="ClientForAddVm.Othername" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
@@ -76,9 +76,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="projectinput4">Contact Number</label>
+                                        <label for="projectinput4">Contact Number</label><span class="text-danger">*</span>
                                         <input type="text" id="projectinput4" class="form-control" placeholder="+233247678543" asp-for="ClientForAddVm.Cellphone" />
-                                        <span asp-validation-for="ClientForAddVm.Cellphone"></span>
+                                        <span asp-validation-for="ClientForAddVm.Cellphone" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
@@ -101,19 +101,14 @@
                                     <div class="form-group">
                                         <label for="projectinput3">Birth Date</label>
                                         <input type="date" id="projectinput3" class="form-control" placeholder="22/10/1990" asp-for="ClientForAddVm.BirthDate" />
-                                        <span asp-validation-for="ClientForAddVm.BirthDate"></span>
+                                        <span asp-validation-for="ClientForAddVm.BirthDate" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="projectinput5">Zone</label>
-                                        <select id="projectinput5" name="interested" class="form-control" asp-for="ClientForAddVm.ZoneId" >
+                                        <select id="projectinput5" class="form-control" asp-for="ClientForAddVm.ZoneId" asp-items="@ViewBag.ZoneList" >
                                             <option value="none" selected="" disabled="">Select Zone</option>
-                                            <option value="design">design</option>
-                                            <option value="development">development</option>
-                                            <option value="illustration">illustration</option>
-                                            <option value="branding">branding</option>
-                                            <option value="video">video</option>
                                         </select>
                                     </div>
                                 </div>
@@ -130,27 +125,17 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="projectinput5">Make</label>
-                                        <select id="projectinput5" name="interested" class="form-control" >
+                                        <label for="projectinput5">Make</label><span class="text-danger">*</span>
+                                        <select id="projectinput5" class="form-control"  asp-items="@ViewBag.MakeList" >
                                             <option value="none" selected="" disabled="">Select Make</option>
-                                            <option value="design">design</option>
-                                            <option value="development">development</option>
-                                            <option value="illustration">illustration</option>
-                                            <option value="branding">branding</option>
-                                            <option value="video">video</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="projectinput5">Model</label>
-                                        <select id="projectinput5" name="interested" class="form-control" asp-for="VehicleForAddVm.ModelId" >
+                                        <label for="projectinput5">Model</label><span class="text-danger">*</span>
+                                        <select id="projectinput5"  class="form-control" asp-for="VehicleForAddVm.ModelId" asp-items="@ViewBag.ModelList" >
                                             <option value="none" selected="" disabled="">Select Model</option>
-                                            <option value="design">design</option>
-                                            <option value="development">development</option>
-                                            <option value="illustration">illustration</option>
-                                            <option value="branding">branding</option>
-                                            <option value="video">video</option>
                                         </select>
 
                                         <span asp-validation-for="VehicleForAddVm.ModelId"></span>
@@ -161,35 +146,41 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="projectinput6">Color</label>
-                                        <select id="projectinput6" name="budget" class="form-control" asp-for="VehicleForAddVm.ColourCode" >
+                                        <select id="projectinput6" class="form-control" asp-for="VehicleForAddVm.ColourCode" asp-items="@ViewBag.ColourList" >
                                             <option value="0" selected="" disabled="">Select Color</option>
-                                            <option value="less than 5000$">less than 5000$</option>
-                                            <option value="5000$ - 10000$">5000$ - 10000$</option>
-                                            <option value="10000$ - 20000$">10000$ - 20000$</option>
-                                            <option value="more than 20000$">more than 20000$</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="projectinput2">Registration Number</label>
+                                        <label for="projectinput2">Registration Number</label><span class="text-danger">*</span>
                                         <input type="text" id="projectinput2" class="form-control" placeholder="Registration Number" asp-for="VehicleForAddVm.RegistrationNo" />
 
-                                        <span asp-validation-for="VehicleForAddVm.RegistrationNo"></span>
+                                        <span asp-validation-for="VehicleForAddVm.RegistrationNo" class="text-danger"></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="projectinput3">Insurance Date</label>
-                                        <input type="date" id="projectinput3" class="form-control" placeholder="22/10/1990" />
+                                        <label for="projectinput3">Insurance Date</label><span class="text-danger">*</span>
+                                        <input type="date" id="projectinput3" asp-for="VehicleForAddVm.InsuranceDate" class="form-control" placeholder="22/10/1990" />
+
+                                        <span asp-validation-for="VehicleForAddVm.InsuranceDate" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="projectinput6">Vehicle Type</label><span class="text-danger">*</span>
+                                        <select id="projectinput6" class="form-control" asp-for="VehicleForAddVm.TypeId" asp-items="@ViewBag.VehicleTypeList">
+                                            <option value="0" selected="" disabled="">Select Type</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-actions right">
-                            <button type="button" class="btn btn-warning mr-1">
+                            <button type="button" class="btn btn-warning mr-1" id="cancel-button">
                                 <i class="ft-x"></i> Cancel
                             </button>
                             <button type="submit" class="btn btn-primary">
@@ -203,3 +194,7 @@
     </section>
     <!-- // Basic form layout section end -->
 </div>
+
+@section Scripts {
+    <script src="~/js/client-vehicle-add.js" asp-append-version="true"></script>
+}
