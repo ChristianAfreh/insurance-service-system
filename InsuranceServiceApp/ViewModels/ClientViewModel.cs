@@ -70,5 +70,19 @@ namespace InsuranceServiceApp.ViewModels
         public SelectList ModeSelectList { get; set; }
         public SelectList ColourSelectList { get; set; }
         public SelectList VehicleTypeSelectList { get; set; }
-    }   
+    } 
+    
+    public class ClientVehicleModelForGridDisplay
+    {
+        public long ClientId { get; set; }
+        public string Surname { get; set; } = null!;
+        public string Othername { get; set; } = null!;
+        public string Cellphone { get; set; } = null!;
+        public string? Email { get; set; }
+        public DateTime? BirthDate { get; set; }
+
+        public string MakeName { get;set; } = null!;
+        public string ModelName { get; set; } = null!;
+        public string RegistrationNo { get; set; } = null!;
+    }
 }

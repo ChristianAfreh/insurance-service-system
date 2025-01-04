@@ -1,4 +1,5 @@
 ﻿using InsuranceServiceApp.Extensions;
+using InsuranceServiceApp.Models;
 using InsuranceServiceApp.Services.IServices;
 using InsuranceServiceApp.Utility;
 using InsuranceServiceApp.ViewModels;
@@ -18,9 +19,39 @@ namespace InsuranceServiceApp.Controllers
             return View();
         }
 
-        public IActionResult GridList()
+        public IActionResult GridList([FromBody] DatatableRequestModel requestModel)
         {
-            return Json(new { });
+            var clientVehicleData = _clientService.GetClientVehicleListForGridDisplay();
+
+            var query = clientVehicleData.AsQueryable();
+
+            var filteredQuery = query;
+
+            //Apply global search filter if present
+            if (!string.IsNullOrEmpty(requestModel.Search.Value))
+            {
+                filteredQuery = filteredQuery.Where(c => c.Surname.ToLower().Contains(requestModel.Search.Value.ToLower()) ||
+                    c.Othername.ToLower().Contains(requestModel.Search.Value.ToLower()) ||
+                    c.MakeModel.ToLower().Contains(requestModel.Search.Value.ToLower()) ||
+                    c.Cellphone.ToLower().Contains(requestModel.Search.Value.ToLower()) ||
+                    c.Email.ToLower().Contains(requestModel.Search.Value.ToLower())     ||
+                    c.RegistrationNo.ToLower().Contains(requestModel.Search.Value.ToLower()) ||
+                    c.Zone.ToLower().Contains(requestModel.Search.Value.ToLower())
+                );
+            }
+
+            //Pagination 
+            var data = filteredQuery.Skip(requestModel.Start).Take(requestModel.Length).ToList();
+
+            var response = new
+            {
+                draw = requestModel.Draw,
+                recordsTotal = query.Count(),
+                recordsFiltered = filteredQuery.Count(),
+                data = data
+            };
+
+            return Json(response);
         }
 
         public IActionResult AddClient()

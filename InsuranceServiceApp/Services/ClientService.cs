@@ -28,6 +28,13 @@ namespace InsuranceServiceApp.Services
 
         }
 
+        public IEnumerable<GetClientVehicleList_Result>  GetClientVehicleListForGridDisplay()
+        {
+            var clientVehicleData = _clientManagementUoW.ClientRepository.GetClientVehicleList();
+
+            return clientVehicleData;      
+        }
+
         public ClientViewModel GetClientByClientId(long clientId)
         {
             var clientData = _clientManagementUoW.ClientRepository.Query(c => c.ClientId == clientId && c.ActiveFlag != (int)ActiveFlagEnum.Deleted).FirstOrDefault();

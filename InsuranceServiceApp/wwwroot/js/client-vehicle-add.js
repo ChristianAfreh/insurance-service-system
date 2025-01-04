@@ -30,7 +30,7 @@ $(document).ready(function () {
                     // Delay the redirect to allow time for the message to be visible
                     setTimeout(() => {
                             window.location.href = redirectUrl;
-                    }, 3000); // Adjust the delay time as needed (e.g., 3000ms = 3 seconds)
+                    }, 2000); // Adjust the delay time as needed (e.g., 2000ms = 2 seconds)
                     
                 }
                 else {
